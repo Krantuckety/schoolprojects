@@ -16,6 +16,12 @@ bool isSafeMultiply (TypeMultiply mult01, TypeMultiply mult02, TypeMultiply &mul
 add code to check if mult01 or mult02 = 0
 if so, set multResult to 0 and leave with a true
 */
+    if (mult01 == 0 || mult02 == 0)
+    {
+        multResult = 0;
+        return true;
+    }
+
 
 /*$$
 calculate the multResult from mult01 and mult02
@@ -23,23 +29,43 @@ check if mult01 is equal to the multResult divided by mult02
 if it is equal then leave with a true
 if not then leave with a false
 */
+    multResult = mult01 * mult02;
+    if (mult01 == (multResult/mult02))
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+
 
 }
 template <class TypeMultiply>
 void calculateTimeFactorialLoopFunc(void) {
 
   //$$ set time start to time now 
+    auto timeStart = steady_clock::now();
 
-  TypeMultiply multiplier      = 1,
-               factorialResult = 1;
+    TypeMultiply    multiplier = 1,
+                    factorialResult = 1,
+                    multResult;
 
-  while (/*$$ invoke isSafeMultiply with multiplier and factorialResult*/) {
+  /*$$ invoke isSafeMultiply with multiplier and factorialResult*/
+  while (isSafeMultiply(multiplier, factorialResult, multResult)) {
     // display the multiplier and the factorialresult using field wdths of 3 and 27 respectively
     // increment the multiplier
+      factorialResult = multResult;
+
+      cout << endl;
+      cout << setw(3) << multiplier << setw(27) << factorialResult;
+
+      multiplier++;
   }
 
   // calculate timeElapsed as described in the assignment
-  
+  auto timeElapsed = duration_cast<nanoseconds> (steady_clock::now() - timeStart);
+
   cout << endl;
   cout << "Unsigned overflow at : " << setw(15) << multiplier << endl;
   cout << "Time Elapsed (nano)  : " << setw(15) << timeElapsed.count() << endl;
@@ -53,7 +79,7 @@ void factorialRecursiveFunc (TypeMultiply &multiplier, TypeMultiply factorialRes
   if (/*$$ invoke isSafeMultiply <TypeMultiply> with multiplier and factorial result)*/ ) {
     cout << setw(3) << multiplier << setw(27) << factorialResult << endl;
     //$$ invoke factorialRecursiveFunc with ++multiplier and factorialResult
-  }
+   }
   return;
 
 }//factorialRecursive
@@ -85,6 +111,7 @@ public:
   // Constructor
   FactorialCalculationClass(unsigned typeSize) {
     //$$ set typeSizeBits to typeSize;
+      typeSizeBits = typeSize;
   }
 
   void executeFactorialForType() {
@@ -117,11 +144,17 @@ int main() {
   and the nn for the argument (nn) to the constructor
   nn must equal nn = 16, 32 and 64 to make the 3 objects
   */
+  FactorialCalculationClass <uint16_t> factorialCalculateUint16Obj(16);
+  FactorialCalculationClass <uint32_t> factorialCalculateUint32Obj(32);
+  FactorialCalculationClass <uint64_t> factorialCalculateUint64Obj(64);
 
   /*$$
   for each of the 3 nn objects factorialCalculateUintnnObj
   invoke the executeFactorialForType()
   */
+  factorialCalculateUint16Obj.executeFactorialForType();
+  factorialCalculateUint32Obj.executeFactorialForType();
+  factorialCalculateUint64Obj.executeFactorialForType();
 
   cout << "Press enter key once or twice to end"; cin.ignore(); cin.get();
 
