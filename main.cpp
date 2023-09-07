@@ -74,12 +74,18 @@ void calculateTimeFactorialLoopFunc(void) {
 
  //------------------------------------------
 template <class TypeMultiply>
-void factorialRecursiveFunc (TypeMultiply &multiplier, TypeMultiply factorialResult) {
+void factorialRecursiveFunc (TypeMultiply multiplier, TypeMultiply factorialResult) {
+    TypeMultiply multResult;
 
-  if (/*$$ invoke isSafeMultiply <TypeMultiply> with multiplier and factorial result)*/ ) {
+    /*$$ invoke isSafeMultiply <TypeMultiply> with multiplier and factorial result)*/
+  if (isSafeMultiply(multiplier, factorialResult, multResult))
+  {
+      factorialResult = multResult;
+
     cout << setw(3) << multiplier << setw(27) << factorialResult << endl;
+    factorialRecursiveFunc(++multiplier, factorialResult);
     //$$ invoke factorialRecursiveFunc with ++multiplier and factorialResult
-   }
+  }
   return;
 
 }//factorialRecursive
@@ -91,6 +97,8 @@ void calculateTimeFactorialRecursiveFunc() {
   auto timeStart = steady_clock::now();
 
   TypeMultiply mult01 = 1;
+  TypeMultiply multResult;
+
   factorialRecursiveFunc <TypeMultiply> (mult01, 1);
 
   auto timeElapsed = duration_cast<nanoseconds>(steady_clock::now() - timeStart);
