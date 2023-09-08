@@ -1,3 +1,12 @@
+/*
+Program Name: Factorial Overflow Project
+Date: 09-08-2023
+Author: Noah S Ferenczhalmy
+Module Purpose
+The program is to be designed to calculate factorials until an overflow is encountered using both a loop technique and recursive method. 
+Inputs for the program are different allocations of memory.
+*/
+
 #include <chrono>
 #include <limits>
 #include <locale>
@@ -10,7 +19,8 @@ using namespace std;
 using namespace chrono;
 
 template <class TypeMultiply>
-bool isSafeMultiply (TypeMultiply mult01, TypeMultiply mult02, TypeMultiply &multResult) {
+bool isSafeMultiply (TypeMultiply mult01, TypeMultiply mult02, TypeMultiply &multResult) 
+{
 
 /*$$
 add code to check if mult01 or mult02 = 0
@@ -42,7 +52,8 @@ if not then leave with a false
 
 }
 template <class TypeMultiply>
-void calculateTimeFactorialLoopFunc(void) {
+void calculateTimeFactorialLoopFunc(void) 
+{
 
   //$$ set time start to time now 
     auto timeStart = steady_clock::now();
@@ -52,16 +63,17 @@ void calculateTimeFactorialLoopFunc(void) {
                     multResult;
 
   /*$$ invoke isSafeMultiply with multiplier and factorialResult*/
-  while (isSafeMultiply(multiplier, factorialResult, multResult)) {
-    // display the multiplier and the factorialresult using field wdths of 3 and 27 respectively
-    // increment the multiplier
-      factorialResult = multResult;
+    while (isSafeMultiply(multiplier, factorialResult, multResult)) 
+    {
+        // display the multiplier and the factorialresult using field wdths of 3 and 27 respectively
+        // increment the multiplier
+        factorialResult = multResult;
 
-      cout << endl;
-      cout << setw(3) << multiplier << setw(27) << factorialResult;
+        cout << endl;
+        cout << setw(3) << multiplier << setw(27) << factorialResult;
 
-      multiplier++;
-  }
+        multiplier++;
+    }
 
   // calculate timeElapsed as described in the assignment
   auto timeElapsed = duration_cast<nanoseconds> (steady_clock::now() - timeStart);
@@ -74,25 +86,26 @@ void calculateTimeFactorialLoopFunc(void) {
 
  //------------------------------------------
 template <class TypeMultiply>
-void factorialRecursiveFunc (TypeMultiply multiplier, TypeMultiply factorialResult) {
-    TypeMultiply multResult;
+void factorialRecursiveFunc (TypeMultiply &multiplier, TypeMultiply factorialResult) 
+{
+  TypeMultiply multResult;
 
     /*$$ invoke isSafeMultiply <TypeMultiply> with multiplier and factorial result)*/
   if (isSafeMultiply(multiplier, factorialResult, multResult))
   {
       factorialResult = multResult;
 
-    cout << setw(3) << multiplier << setw(27) << factorialResult << endl;
-    factorialRecursiveFunc(++multiplier, factorialResult);
+      cout << setw(3) << multiplier << setw(27) << factorialResult << endl;
+      factorialRecursiveFunc(++multiplier, factorialResult);
     //$$ invoke factorialRecursiveFunc with ++multiplier and factorialResult
   }
   return;
-
 }//factorialRecursive
 
  //------------------------------------------  
 template <class TypeMultiply>
-void calculateTimeFactorialRecursiveFunc() {
+void calculateTimeFactorialRecursiveFunc() 
+{
 
   auto timeStart = steady_clock::now();
 
@@ -110,19 +123,22 @@ void calculateTimeFactorialRecursiveFunc() {
 }//calculateTimeFactorialRecursiveFunc()
 
 template <typename TYPESIZE> 
-class FactorialCalculationClass {
+class FactorialCalculationClass 
+{
 
 private:
   unsigned typeSizeBits;
 
 public:
   // Constructor
-  FactorialCalculationClass(unsigned typeSize) {
+  FactorialCalculationClass(unsigned typeSize) 
+  {
     //$$ set typeSizeBits to typeSize;
       typeSizeBits = typeSize;
   }
 
-  void executeFactorialForType() {
+  void executeFactorialForType() 
+  {
 
     cout <<
       typeSizeBits <<
@@ -142,7 +158,8 @@ public:
 
 };// template <class TYPESIZE> class factorialCalculationClass
 
-int main() {
+int main() 
+{
   // condition cout set to local digit separation comas (USA)
   cout.imbue(locale(""));
 
