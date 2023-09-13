@@ -53,26 +53,79 @@ int main() {
    exit(EXIT_SUCCESS);
 }
 
-bool readMatrixFromFile(int matrix[][MAX_MATRIX_SIZE], unsigned& height, unsigned& width, ifstream& inputFileStreamObj) {
-  
-   return(false);
+bool readMatrixFromFile(int matrix[][MAX_MATRIX_SIZE], unsigned& height, unsigned& width, ifstream& inputFileStreamObj) 
+{
+    if (!(inputFileStreamObj >> height))
+        return true;
+    inputFileStreamObj >> width;
+
+    for (unsigned row = 0; row < height; row++)
+        for (unsigned col = 0; col <  width; col++)
+            inputFileStreamObj >> matrix[row][col];
+        return(false);
 }
 
 
 void displayMatrix(int matrix[][MAX_MATRIX_SIZE], unsigned height, unsigned width) {
-
+    for (unsigned row = 0; row < height; row++)
+    {
+        for (unsigned col = 0; col < width; col++)
+        {
+            cout << setw(WIDTH_DISPLAY) << matrix[row][col];
+        }
+        cout << "\n";
+    }
+    // cout << endl;
 }
 
 
-void displayCalcMatrixSums(int matrix[][MAX_MATRIX_SIZE], unsigned height, unsigned width, int colSums[MAX_MATRIX_SIZE]) {
-
+void displayCalcMatrixSums(int matrix[][MAX_MATRIX_SIZE], unsigned height, unsigned width, int colSums[MAX_MATRIX_SIZE]) 
+{
+    for (unsigned col = 0; col < width; col++)
+    {
+        colSums[col] = 0;
+        for (unsigned row = 0; row < height; row++)
+        {
+            colSums[col] += matrix[row][col];
+            
+        }
+        cout << setw(WIDTH_DISPLAY) << colSums[col];
+        //cout << "\n";
+    }
+    cout << endl;
  }
  
 
 void symmetryCheckMatrix(int colSums[], unsigned width, unsigned height) {
-
+    bool symmetryCheck = false;
+    for (unsigned posS = 0, posE = width - 1; posS <= posE; posS++, posE--)
+    {
+        symmetryCheck = (colSums[posS] == colSums[posE]);
+        if (!symmetryCheck)
+            break;
+    }
+    if (symmetryCheck)
+        cout << "\nThis Matrix is Vertically Symmetric.\n\n";
+    else
+        cout << "\nThis matrix is not Vertically Symmetric.\n\n";
 }
 
 void sortMatrixRows(int matrix[][MAX_MATRIX_SIZE], unsigned width, unsigned height) {
-    
+    unsigned colStore;
+    for (unsigned row = 0; row < height; row++)
+    {
+        for (unsigned col = 1; col < width;)
+        {
+            if (matrix[row][col - 1] > matrix[row][col])
+            {
+                colStore = matrix[row][col];
+                matrix[row][col] = matrix[row][col - 1];
+                matrix[row][col - 1] = colStore;
+                col = 1;
+            }
+            else
+                col++;
+        }
+    }
+
  }
