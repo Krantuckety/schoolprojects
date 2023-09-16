@@ -75,7 +75,7 @@ void displayMatrix(int matrix[][MAX_MATRIX_SIZE], unsigned height, unsigned widt
         }
         cout << "\n";
     }
-    // cout << endl;
+    cout << endl;
 }
 
 
