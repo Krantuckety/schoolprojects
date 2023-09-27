@@ -2,6 +2,7 @@
 #define BaseShape_HEADER
 
 #include <iostream>
+#include "LineInfo.h"
 
 using namespace std;
 
@@ -21,7 +22,12 @@ public:
 		area = inputArea;
 	}
 
-	virtual void calculateArea()
+	virtual double calculateArea()
+	{
+		return 0;
+	}
+
+	virtual void display()
 	{
 
 	}
