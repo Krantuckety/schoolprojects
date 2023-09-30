@@ -1,3 +1,8 @@
+/*
+This is the Circle Class File
+It is derived from the BaseShape Class
+*/
+
 #include <iostream>
 #include "BaseShape.h"
 
@@ -10,7 +15,14 @@ private:
 	double centerX, centerY, radius;
 
 public:
-	// Constructor 
+	/*
+	Name:              Circle
+	Function Purpose : Constructs a Circle Object
+	Function Design:   Runs a series error checks on the input values
+					   Following the error checks, assigns the input values to their respective variables
+	Inputs:            widInput, lenInput
+	Outputs:           By function name, an object of the type "Rectangle"
+	*/
 	Circle(double xInput, double yInput, double radiusInput)
 	{
 		if (radiusInput < 0 || xInput < 0 || yInput < 0) 
@@ -31,11 +43,27 @@ public:
 		setArea(calculateArea());
 	}
 
+	/*
+	Name:              calculateArea
+	Function Purpose : Calculates the area of the Circle.
+	Function Design:   Multiplies the constant PI times the radius squared, then returns the output
+					   not a negative amount
+	Inputs:            None
+	Outputs:           By function name an double that represents the area.
+	*/
 	double calculateArea() override
 	{
 		return (pi * radius * radius);
 	}
 
+	/*
+	Name:              display
+	Function Purpose : Displays all attributes of the Circle
+	Function Design:   Runs a series of cout statements,
+					   lists the attribute and the value of it on different lines
+	Inputs:            None
+	Outputs:           By function name a series of text-lines listing the attributes
+	*/
 	void display() override
 	{
 		cout << "Shape is a Circle :\n";

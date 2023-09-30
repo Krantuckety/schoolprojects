@@ -1,3 +1,13 @@
+/*
+Program Name: Shapes Project
+Date: 2023-09-29
+Author: Noah S. Ferenczhalmy
+Module Purpose
+This program is a program simulating shapes being created.
+One can create up to 3 circles or rectangles. 
+After 3 have been created, the program will show the attributes of all 3 shapes.
+*/
+
 #include <iostream>
 #include "Circle.h"
 #include "Rectangle.h"
@@ -5,28 +15,19 @@
 
 using namespace std;
 
-int inputShapeChoice;
-int shapeCount;
-
-//Variables used for constructing a shape of type "Circle"
-double x, y, radius;
-//Variables used for constructing a shape of type "Rectangle"
-double width, length;
-
-const int MAX_NUMBER_SHAPES = 3;
-
 int main()
 {
     int inputShapeChoice;
     int shapeCount = 0;
 
-    //Variables used for constructing a shape of type "Circle"
+    // Variables used for constructing a shape of type "Circle"
     double x;
     double y;
     double radius;
-    //Variables used for constructing a shape of type "Rectangle"
+    // Variables used for constructing a shape of type "Rectangle"
     double width, length;
 
+    // Constant
     const int MAX_NUMBER_SHAPES = 3;
 
     BaseShape** shapeArray = new BaseShape * [MAX_NUMBER_SHAPES];
@@ -49,12 +50,12 @@ int main()
 
             switch (inputShapeChoice)
             {
+                // Switch case for if a shape of type "Circle" is chosen.
                 case 1:
-                    cout << "Enter the Circles Radius, X value and Y Value : "; cin >> radius >> x >> y;
+                    cout << "Enter the Circles Radius, X value and Y Value : "; 
+                    cin >> radius >> x >> y;
 
-
-
-
+                    // Checks that none of the input values are negative
                     if ((x < 0) || (y < 0) || (radius < 0))
                     {
                         string errorString = "";
@@ -71,10 +72,12 @@ int main()
                     shapeCount++;
                 break;
 
+                // Switch case for if a shape of type "Rectangle" is chosen.
                 case 2:
                     cout << "Enter the Rectangles Width and Length : ";
                     cin >> width >> length;
 
+                    // Checks that none of the input values are negative
                     if (width < 0 || length < 0)
                     {
                         string errorString = "";
@@ -89,12 +92,14 @@ int main()
                     shapeCount++;
                 break;
 
+                // Switch Case if the user did not choose the values "1" or "2"
                 default:
                     cout << "Wrong menu value : " << inputShapeChoice << "\n";
                     cout << "Please try a different value" << "\n\n";
             }
-        } while (shapeCount < MAX_NUMBER_SHAPES);
+        } while (shapeCount < MAX_NUMBER_SHAPES); // Loops if there are less than 3 shapes constructed.
 
+        // Loops through all objects in the shapeArray and runs the display method on them to 
         for (int shapeArrayIndex = 0; shapeArrayIndex < MAX_NUMBER_SHAPES; shapeArrayIndex++)
             shapeArray[shapeArrayIndex]->display();
     }//try
