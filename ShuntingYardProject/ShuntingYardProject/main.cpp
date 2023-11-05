@@ -25,8 +25,8 @@ public:
     // xxx insert code here to insert * and / in the map object
     operatorMapObj.insert(OperatorPrecedenceMapType::value_type('/', 4));
     operatorMapObj.insert(OperatorPrecedenceMapType::value_type('*', 3));
-    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('+', 2));
-    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('-', 1));
+    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('-', 2));
+    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('+', 1));
   }//OperatorMapClass ()
 
   bool isStackOperatorHigherPrecedence(char operatorChar, char operatorStackChar) {
