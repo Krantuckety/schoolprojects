@@ -1,3 +1,13 @@
 a+b*c-d
 A+B*(C-D)
 a*(b+c)-d/e
+a+(b*c)-d
+(a+b)/(c+d)
+g-a*c+g
+1+5*8
+4-5+x
+1+2+3+4
+a+c-e*2
+g-5+b*2
+a+b-c*d/e
+(a+b)-c*(d/e)

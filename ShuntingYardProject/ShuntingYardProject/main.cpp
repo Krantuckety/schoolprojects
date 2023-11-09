@@ -23,9 +23,9 @@ public:
   OperatorMapClass() 
   {
     // xxx insert code here to insert * and / in the map object
-    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('/', 4));
-    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('*', 3));
-    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('-', 2));
+    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('/', 2));
+    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('*', 2));
+    operatorMapObj.insert(OperatorPrecedenceMapType::value_type('-', 1));
     operatorMapObj.insert(OperatorPrecedenceMapType::value_type('+', 1));
   }//OperatorMapClass ()
 
@@ -228,6 +228,8 @@ void inorder(TreeNodeClass* treeNode) {
         // go left
         inorder(treeNode->left);
         // add value to build string 
+        if (parensRequired)
+            buildString += ')';
         buildString += treeNode->value;
         // xxx check if parens required pass arguments treeNode->right, treeNode->value
         parensRequired = areParensRequired(treeNode->right, treeNode->value);
@@ -285,7 +287,7 @@ int main() {
       buildString = "";  postorder(expressionTreeRootPtr);
       cout << "Tree post-order expression is " << endl << buildString << endl << endl;
 
-      cout << endl << endl;
+      cout << "---------------------------------------" << endl << endl;
 
   };//while
 
