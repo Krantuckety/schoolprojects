@@ -1,3 +1,13 @@
+/*
+Program Name: ShuntingYardProject
+Date: 12/8/2023
+Author: Noah S Ferenczhalmy
+Module Purpose
+This program takes inputs that are in in-fix notation, then converts these expressions into post-fix notation using a stack.
+The program will then run the post-fix expression through a binary expression tree to convert into pre-fix, in-fix and post-fix notation in that order.
+*/
+
+
 // ShuntingYardTemplateSol.cpp : Defines the entry point for the console application.
 
 #include <iostream>
